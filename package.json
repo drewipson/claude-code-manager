@@ -1,0 +1,401 @@
+{
+  "name": "claude-code-manager",
+  "displayName": "Claude Code Manager",
+  "description": "Manage Claude Code configurations and visualize usage with beautiful analytics",
+  "version": "0.1.0",
+  "publisher": "claude-code-manager",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Visualization"
+  ],
+  "keywords": [
+    "claude",
+    "ai",
+    "anthropic",
+    "configuration",
+    "analytics"
+  ],
+  "icon": "resources/icons/claude-logo.png",
+  "galleryBanner": {
+    "color": "#1a1a2e",
+    "theme": "dark"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "claude-code-manager",
+          "title": "Claude Code Manager",
+          "icon": "resources/icons/claude-logo.svg"
+        }
+      ]
+    },
+    "views": {
+      "claude-code-manager": [
+        {
+          "id": "ccm.memories",
+          "name": "Memories"
+        },
+        {
+          "id": "ccm.commands",
+          "name": "Commands"
+        },
+        {
+          "id": "ccm.skills",
+          "name": "Skills"
+        },
+        {
+          "id": "ccm.subAgents",
+          "name": "Sub-Agents"
+        },
+        {
+          "id": "ccm.mcpServers",
+          "name": "MCP Servers"
+        },
+        {
+          "id": "ccm.permissions",
+          "name": "Permissions"
+        },
+        {
+          "id": "ccm.hooks",
+          "name": "Hooks"
+        },
+        {
+          "id": "ccm.documentation",
+          "name": "Documentation"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "ccm.refresh",
+        "title": "Refresh",
+        "icon": "$(refresh)",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.openFile",
+        "title": "Open File",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.goToLine",
+        "title": "Go to Section",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.moveToGlobal",
+        "title": "Move to Global",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.moveToProject",
+        "title": "Move to Project",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.revealInFinder",
+        "title": "Reveal in Finder",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.copyPath",
+        "title": "Copy Path",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.deleteFile",
+        "title": "Delete",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.renameFile",
+        "title": "Rename",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.createCommandFolder",
+        "title": "Create Command Folder",
+        "icon": "$(new-folder)",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.createSubAgentFolder",
+        "title": "Create Sub-Agent Folder",
+        "icon": "$(new-folder)",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.createCommandInFolder",
+        "title": "New Command in Folder",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.createSkillInFolder",
+        "title": "New Skill in Folder",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.createSubAgentInFolder",
+        "title": "New Sub-Agent in Folder",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.openDocs",
+        "title": "Open Documentation",
+        "icon": "$(book)",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.createSkill",
+        "title": "Create Skill",
+        "icon": "$(add)",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.createSubAgent",
+        "title": "Create Sub-Agent",
+        "icon": "$(add)",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.createMemoryFromTemplate",
+        "title": "Create CLAUDE.md from Template",
+        "icon": "$(new-file)",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.createCommand",
+        "title": "Create Command",
+        "icon": "$(add)",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.openSettingsFile",
+        "title": "Open Settings File",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.viewMcpConfig",
+        "title": "View MCP Configuration",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.createHook",
+        "title": "Create Hook",
+        "icon": "$(add)",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.editHook",
+        "title": "Edit Hook",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.deleteHook",
+        "title": "Delete Hook",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.duplicateHook",
+        "title": "Duplicate Hook",
+        "category": "Claude Code Manager"
+      },
+      {
+        "command": "ccm.copyHookJson",
+        "title": "Copy Hook JSON",
+        "category": "Claude Code Manager"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "ccm.refresh",
+          "when": "view =~ /ccm\\./",
+          "group": "navigation"
+        },
+        {
+          "command": "ccm.createMemoryFromTemplate",
+          "when": "view == ccm.memories",
+          "group": "navigation"
+        },
+        {
+          "command": "ccm.createCommand",
+          "when": "view == ccm.commands",
+          "group": "navigation@1"
+        },
+        {
+          "command": "ccm.createCommandFolder",
+          "when": "view == ccm.commands",
+          "group": "navigation@2"
+        },
+        {
+          "command": "ccm.createSkill",
+          "when": "view == ccm.skills",
+          "group": "navigation@1"
+        },
+        {
+          "command": "ccm.createSubAgent",
+          "when": "view == ccm.subAgents",
+          "group": "navigation@1"
+        },
+        {
+          "command": "ccm.createSubAgentFolder",
+          "when": "view == ccm.subAgents",
+          "group": "navigation@2"
+        },
+        {
+          "command": "ccm.createHook",
+          "when": "view == ccm.hooks",
+          "group": "navigation@1"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "ccm.openFile",
+          "when": "viewItem == claudeFile || viewItem == skillFile",
+          "group": "navigation@1"
+        },
+        {
+          "command": "ccm.moveToGlobal",
+          "when": "viewItem == claudeFile && ccm.canMoveToGlobal",
+          "group": "move@1"
+        },
+        {
+          "command": "ccm.moveToProject",
+          "when": "viewItem == claudeFile && ccm.canMoveToProject",
+          "group": "move@2"
+        },
+        {
+          "command": "ccm.renameFile",
+          "when": "viewItem == claudeFile",
+          "group": "edit@1"
+        },
+        {
+          "command": "ccm.deleteFile",
+          "when": "viewItem == claudeFile",
+          "group": "edit@2"
+        },
+        {
+          "command": "ccm.revealInFinder",
+          "when": "viewItem == claudeFile || viewItem == skillFile",
+          "group": "file@1"
+        },
+        {
+          "command": "ccm.copyPath",
+          "when": "viewItem == claudeFile || viewItem == skillFile",
+          "group": "file@2"
+        },
+        {
+          "command": "ccm.moveToGlobal",
+          "when": "viewItem == claudeFolder && ccm.canMoveToGlobal",
+          "group": "move@1"
+        },
+        {
+          "command": "ccm.moveToProject",
+          "when": "viewItem == claudeFolder && ccm.canMoveToProject",
+          "group": "move@2"
+        },
+        {
+          "command": "ccm.renameFile",
+          "when": "viewItem == claudeFolder",
+          "group": "edit@1"
+        },
+        {
+          "command": "ccm.deleteFile",
+          "when": "viewItem == claudeFolder",
+          "group": "edit@2"
+        },
+        {
+          "command": "ccm.revealInFinder",
+          "when": "viewItem == claudeFolder",
+          "group": "file@1"
+        },
+        {
+          "command": "ccm.copyPath",
+          "when": "viewItem == claudeFolder",
+          "group": "file@2"
+        },
+        {
+          "command": "ccm.createCommandInFolder",
+          "when": "viewItem == claudeFolder && view == ccm.commands",
+          "group": "create@1"
+        },
+        {
+          "command": "ccm.createSkillInFolder",
+          "when": "viewItem == claudeFolder && view == ccm.skills",
+          "group": "create@1"
+        },
+        {
+          "command": "ccm.createSubAgentInFolder",
+          "when": "viewItem == claudeFolder && view == ccm.subAgents",
+          "group": "create@1"
+        },
+        {
+          "command": "ccm.editHook",
+          "when": "viewItem == hook",
+          "group": "edit@1"
+        },
+        {
+          "command": "ccm.deleteHook",
+          "when": "viewItem == hook",
+          "group": "edit@2"
+        },
+        {
+          "command": "ccm.duplicateHook",
+          "when": "viewItem == hook",
+          "group": "copy@1"
+        },
+        {
+          "command": "ccm.copyHookJson",
+          "when": "viewItem == hook",
+          "group": "copy@2"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Claude Code Manager",
+      "properties": {
+        "claudeCodeManager.autoRefresh": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically refresh views on file changes"
+        },
+        "claudeCodeManager.globalClaudePath": {
+          "type": "string",
+          "default": "",
+          "description": "Custom path to global .claude directory (default: ~/.claude)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "node esbuild.js --production",
+    "watch": "node esbuild.js --watch",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.3.8",
+    "esbuild": "^0.19.8",
+    "eslint": "^8.54.0",
+    "sharp": "^0.34.5",
+    "typescript": "^5.3.2"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.1"
+  }
+}

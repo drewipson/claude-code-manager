@@ -1,0 +1,55 @@
+---
+name: skill-name-lowercase-with-hyphens
+description: Clear description of what this skill does and when to use it. Include trigger keywords that users would mention to activate this skill. Maximum 1024 characters.
+allowed-tools: Read, Grep, Glob, Edit, Write, Bash
+---
+
+# Skill Name
+
+## Overview
+
+Provide a clear explanation of what this skill does and when Claude should autonomously activate it.
+
+## Instructions
+
+Step-by-step guidance for Claude to follow when using this skill:
+
+1. **[Step 1 Title]**: Detailed instructions for this step
+2. **[Step 2 Title]**: Detailed instructions for this step
+3. **[Step 3 Title]**: Detailed instructions for this step
+
+## Examples
+
+Provide concrete examples of how this skill should be used:
+
+### Example 1: [Scenario Name]
+```
+[Example usage or code]
+```
+
+### Example 2: [Scenario Name]
+```
+[Example usage or code]
+```
+
+## Best Practices
+
+- [Best practice 1]
+- [Best practice 2]
+- [Best practice 3]
+
+## Dependencies
+
+List any external dependencies or requirements:
+- [Dependency 1]: Description
+- [Dependency 2]: Description
+
+## Reference Materials
+
+For advanced usage, see additional documentation files:
+- [reference.md](reference.md) - Detailed API reference
+- [examples.md](examples.md) - Additional examples
+
+## Version History
+
+- v1.0.0 - Initial creation

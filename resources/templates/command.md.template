@@ -1,0 +1,36 @@
+---
+description: Brief description of what this command does
+argument-hint: [optional-arg]
+allowed-tools: Read, Grep, Glob
+model: sonnet
+---
+
+# Command Instructions
+
+Provide clear, step-by-step instructions for Claude to follow when this command is invoked.
+
+## Parameters
+
+Use `$ARGUMENTS` to capture all arguments, or `$1`, `$2`, `$3` for specific positional arguments.
+
+Example: "Analyze the file $1 for $ARGUMENTS"
+
+## Expected Behavior
+
+Describe what Claude should do:
+- Step 1: [Action]
+- Step 2: [Action]
+- Step 3: [Action]
+
+## Examples
+
+Show example usage:
+- `/command-name arg1 arg2`
+- `/command-name "multi word argument"`
+
+## Notes
+
+- Keep commands focused on a single task
+- Use descriptive names
+- Include file references with @path/to/file.js
+- Execute bash commands with !`git status` (requires allowed-tools: Bash)
