@@ -1,166 +1,294 @@
-# Claude Code Config - VS Code Extension
+<div align="center">
+  <img src="resources/icons/claude-logo.png" alt="Claude Code Config Logo" width="120" height="120">
 
-A VS Code extension that helps you manage Claude Code configurations and visualize usage metrics right in VS Code.
+# Claude Code Config
 
-## Features
+**A VS Code extension for managing Claude Code configurations**
 
-### Configuration Management
+Visualize, organize, and control all your Claude Code settings from one interface.
 
-- **Organized TreeView** - See all your Claude configurations grouped by type:
-  - Claude Context (CLAUDE.md files)
-  - Memories
-  - Skills
-  - Sub-Agents
-  - MCP Servers
-- **Location Badges** - Instantly see where each config lives: `[Global]`, `[Project]`, or nested paths
-- **Click to Open** - Single-click any file to open in VS Code's native editor
-- **Move Between Scopes** - Right-click to move configs between Global and Project scopes
+[![VS Code](https://img.shields.io/badge/VS%20Code-1.85.0+-blue.svg)](https://code.visualstudio.com/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-### Documentation Quick Links
+</div>
 
-- Direct links to official Claude Code documentation
-- Context-aware help for each configuration type
+---
 
-## Installation
+## Why did I build this?
 
-### From Source (Development)
+I love using Claude Code for my personal and professional projects when it works well. When CC goes off the rails with hallucinations or doing a task incorrectly, I would get frustrated. Antrhopic has provided lots of configurations for memories, slash commands, hooks, etc that fix these problems.
 
-1. Clone this repository:
+However, these configs can be scattered all over the place. I would forget where I told Claude how to draft a pull request -- was it a skill? a memory? a slash command? all three?
 
-   ```bash
-   git clone https://github.com/your-username/claude-code-manager.git
-   cd claude-code-manager
-   ```
+I built Claude Code Config because I use Claude Code extensively in my personal and professional projects and wanted quick insight into how Claude is set up for a given project.
 
-2. Install dependencies:
+## ✨ What does Claude Code Config do?
 
-   ```bash
-   npm install
-   ```
+Claude Code Config changes how you work with [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) configurations in VS Code. Instead of manually navigating directories and editing scattered files, get a unified command center that puts everything at your fingertips.
 
-3. Build the extension:
+**Perfect for developers who want to:**
 
-   ```bash
-   npm run build
-   ```
+- ⚙️ Manage Claude Code settings across your global, project, and local configurations.
+- 🛠️ Quickly add agents, hooks, skills, commands with templates directly from Claude docs so you set them up right every time.
+- ↔️ Move a skill, hook, agent from a local project config to your global set up with one click so your other projects benefit from that skill.
+- 🔒 Quickly see what can and can't be executed by Claude Code Permissions
 
-4. Open in VS Code and press `F5` to launch the Extension Development Host
+---
 
-### From VSIX
+## 🎯 Key Features
 
-1. Download the `.vsix` file from releases
-2. In VS Code, go to Extensions view
-3. Click `...` menu → `Install from VSIX...`
+### 📁 **Unified Configuration Management**
+
+All your Claude Code configurations organized in one beautiful tree view:
+
+- **Memories** (CLAUDE.md) - Your project context and persistent knowledge with drill down into specific markdown levels.
+- **Commands** - Custom slash commands for your workflow
+- **Skills** - Reusable AI capabilities and specialized behaviors
+- **Sub-Agents** - Task-specific agents with custom prompts (color coding included)
+- **Hooks** - Create, edit, delete with a GUI interface for quick adding
+- **Permissions** - Fine-grained control over tool access
+
+### ⚡ **Powerful Tools**
+
+- **One-Click Creation** - Add new configs with templates via `+` buttons
+- **Quickly Change Scopes** - Move files between Global and Project with right-click
+- **Folder Organization** - Create logical groupings for commands and sub-agents
+- **Live Sync** - Auto-refresh when files change
+- **Color-Coded Agents** - Sub-agents display in their configured colors for easy identification
+- **Quick Links** to offical Claude Code documentation for configs and setup.
+
+### ↩️ **Hooks Management Interface**
+
+Create and manage Claude Code hooks without touching JSON:
+
+- **Visual Hook Builder** - Multi-step wizard for all hook types
+- **Organized Hierarchy** - Browse by location → event → matcher → hook
+- **Quick Actions** - Edit, delete, duplicate, or copy hooks with one click
+- **Support for All Events** - PreToolUse, PostToolUse, SessionStart, and more
+- **Both Types** - Command-based and LLM prompt-based hooks
+
+---
+
+## 🚀 Quick Start
+
+### Installation
+
+#### From VS Code Marketplace _(Coming Soon)_
+
+Download "Claude Code Config" from the VS Code Marketplace
+
+#### From VSIX
+
+1. Download the latest `.vsix` from [Releases](../../releases)
+2. Open VS Code Extensions view (`Cmd+Shift+X` / `Ctrl+Shift+X`)
+3. Click `...` menu → **Install from VSIX...**
 4. Select the downloaded file
 
-## Usage
-
-### Viewing Configurations
-
-1. Click the Claude Code Config icon in the Activity Bar (left sidebar)
-2. Expand each section to see your configurations:
-   - **Claude Context** - Your CLAUDE.md files
-   - **Memories** - Persistent knowledge for Claude
-   - **Skills** - Specialized capabilities
-   - **Sub-Agents** - Task-specific agents
-   - **MCP Servers** - Model Context Protocol configurations
-
-### Creating New Configurations
-
-1. Hover over a section (Memories, Skills, or Sub-Agents)
-2. Click the `+` button that appears
-3. Select scope (Global or Project)
-4. Enter a name
-5. The file opens in VS Code for editing
-
-### Moving Configurations Between Scopes
-
-1. Right-click any configuration file
-2. Select "Move to Global" or "Move to Project"
-3. The file is moved and the view refreshes
-
-### Viewing Usage Analytics
-
-1. Click "Open Usage Dashboard" in the Usage Analytics section
-2. View your token usage, costs, and trends
-3. Export data as JSON or CSV
-
-## Configuration
-
-Open VS Code settings and search for "Claude Code Config":
-
-| Setting                              | Description                             | Default       |
-| ------------------------------------ | --------------------------------------- | ------------- |
-| `claudeCodeManager.ccusagePath`      | Path to CCUSAGE executable              | Auto-detected |
-| `claudeCodeManager.autoRefresh`      | Auto-refresh views on file changes      | `true`        |
-| `claudeCodeManager.globalClaudePath` | Custom path to global .claude directory | `~/.claude`   |
-
-## Requirements
-
-- VS Code 1.85.0 or higher
-- [CCUSAGE](https://github.com/ryoppippi/ccusage) (optional, for usage analytics)
-
-## File Structure
-
-The extension manages files in these locations:
-
-```
-~/.claude/                    # Global configurations
-├── CLAUDE.md
-├── memories/
-│   └── *.md
-├── skills/
-│   └── *.md
-├── sub-agents/
-│   └── *.md
-└── mcp_servers.json
-
-{workspace}/                  # Project configurations
-├── CLAUDE.md
-├── .claude/
-│   ├── memories/
-│   ├── skills/
-│   └── sub-agents/
-└── **/CLAUDE.md              # Nested configs
-```
-
-## Commands
-
-| Command              | Description                |
-| -------------------- | -------------------------- |
-| `ccm.refresh`        | Refresh all views          |
-| `ccm.openDashboard`  | Open Usage Dashboard       |
-| `ccm.createMemory`   | Create a new memory        |
-| `ccm.createSkill`    | Create a new skill         |
-| `ccm.createSubAgent` | Create a new sub-agent     |
-| `ccm.moveToGlobal`   | Move file to global scope  |
-| `ccm.moveToProject`  | Move file to project scope |
-
-## Development
+#### From Source
 
 ```bash
-# Install dependencies
+git clone https://github.com/your-username/claude-code-manager.git
+cd claude-code-manager
 npm install
-
-# Build for development
-npm run watch
-
-# Build for production
 npm run build
-
-# Run linting
-npm run lint
+# Press F5 in VS Code to launch Extension Development Host
 ```
 
-## Contributing
+### First Steps
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+1. **Click the icon** - Look for the Claude Code Config icon in the Activity Bar (left sidebar)
+2. **Explore your configs** - Expand sections to see your existing Claude Code files
+3. **Create something new** - Click any `+` button to add memories, commands, skills, or sub-agents
+4. **Organize with folders** - Right-click in Commands or Sub-Agents to create organizational folders
+5. **Set up hooks** - Click `+` in Hooks view to add automation to your Claude Code workflow
 
-## License
+---
 
-MIT
+## 📖 Documentation
 
-## Acknowledgments
+### Configuration Files
 
-- [CCUSAGE](https://github.com/ryoppippi/ccusage) for usage analytics
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) by Anthropic
+Claude Code Config manages files in standard Claude Code locations:
+
+```
+~/.claude/                           # Global (all projects)
+├── CLAUDE.md
+├── commands/
+│   ├── my-command.md
+│   └── workflows/                   # Organized in folders
+│       └── deploy.md
+├── skills/
+│   └── code-review.md
+├── agents/
+│   ├── researcher.md                # color: blue (in YAML frontmatter)
+│   └── planner.md                   # color: purple
+├── mcp_servers.json
+└── settings.json                    # Hooks and permissions
+
+.claude/                             # Project-specific
+├── CLAUDE.md
+├── commands/
+├── agents/
+└── settings.local.json              # Project hooks (gitignored)
+```
+
+### VS Code Settings
+
+Configure Claude Code Config in VS Code settings:
+
+| Setting                              | Description                        | Default     |
+| ------------------------------------ | ---------------------------------- | ----------- |
+| `claudeCodeManager.autoRefresh`      | Auto-refresh views on file changes | `true`      |
+| `claudeCodeManager.globalClaudePath` | Custom global .claude directory    | `~/.claude` |
+
+### Available Commands
+
+Access via Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`):
+
+- **Refresh All Views** - Reload all configurations
+- **Create Memory** - New CLAUDE.md file
+- **Create Command** - New slash command
+- **Create Skill** - New skill definition
+- **Create Sub-Agent** - New sub-agent with template
+- **Create Hook** - Launch hook creation wizard
+
+---
+
+## 🎨 Features in Detail
+
+### Hooks Management
+
+Create powerful automation for your Claude Code workflow:
+
+**Supported Event Types:**
+
+- `PreToolUse` / `PostToolUse` - Before/after tool execution
+- `PermissionRequest` - When permissions are requested
+- `UserPromptSubmit` - When you submit a prompt
+- `SessionStart` / `SessionEnd` - Session lifecycle
+- `Stop` / `SubagentStop` - When agents finish
+- `Notification` - System notifications
+- `PreCompact` - Before context compaction
+
+**Example Use Cases:**
+
+- Auto-format code after edits
+- Run tests after file changes
+- Validate prompts before submission
+- Log all tool usage for auditing
+- Block access to sensitive files
+
+### Permissions Visualization
+
+See all your permission rules organized by:
+
+1. **Type** - Allow, Ask, or Deny
+2. **Tool** - Read, Edit, Write, Bash, etc.
+3. **Pattern** - Specific files or patterns
+
+Click any rule to jump to the settings file for editing.
+
+### Sub-Agent Colors
+
+Configure agent colors in YAML frontmatter:
+
+```yaml
+---
+name: my-agent
+color: purple
+---
+```
+
+The icon in the tree view will display in that color for easy identification!
+
+---
+
+## 🔧 Development
+
+### Prerequisites
+
+- Node.js 18+
+- VS Code 1.85.0+
+
+### Build Commands
+
+```bash
+npm install          # Install dependencies
+npm run watch        # Development mode with auto-rebuild
+npm run build        # Production build
+npm run lint         # Run ESLint
+npx vsce package     # Build .vsix package
+```
+
+### Project Structure
+
+```
+src/
+├── extension.ts              # Main activation
+├── core/
+│   ├── types.ts             # TypeScript interfaces
+│   └── constants.ts         # Shared constants
+├── providers/
+│   └── claudeTreeDataProvider.ts  # Tree view logic
+├── services/
+│   ├── fileDiscoveryService.ts    # Find configs
+│   ├── fileOperationsService.ts   # CRUD operations
+│   ├── hooksService.ts            # Hooks management
+│   ├── permissionsService.ts      # Permissions parsing
+│   └── mcpService.ts              # MCP server discovery
+└── utils/
+    ├── yamlParser.ts        # YAML frontmatter parsing
+    └── markdownParser.ts    # Markdown section parsing
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Here's how to help:
+
+1. **Fork the repository**
+2. **Create a feature branch** - `git checkout -b feature/amazing-feature`
+3. **Make your changes** - Follow existing code style
+4. **Test thoroughly** - Ensure nothing breaks
+5. **Commit with conventional commits** - `feat:`, `fix:`, `docs:`, etc.
+6. **Push and create a PR** - Describe your changes
+
+### Areas for Contribution
+
+- 📊 Usage analytics dashboard
+- 🌐 Internationalization (i18n)
+- 🎨 Additional themes/icons
+- 📝 Documentation improvements
+- 🐛 Bug fixes and optimizations
+
+---
+
+## 📄 License
+
+MIT © 2024
+
+---
+
+## 🙏 Acknowledgments
+
+- **[Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview)** by Anthropic - The amazing AI coding assistant
+- **VS Code Extension API** - Powerful extensibility platform
+
+---
+
+## 📞 Support
+
+- **Issues** - [GitHub Issues](../../issues)
+- **Discussions** - [GitHub Discussions](../../discussions)
+- **Documentation** - [Claude Code Docs](https://docs.anthropic.com/en/docs/claude-code/overview)
+
+---
+
+<div align="center">
+
+**Built with ❤️ for the Claude Code community**
+
+If this extension helps your workflow, consider giving it a ⭐ on GitHub!
+
+</div>
